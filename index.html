@@ -6,72 +6,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="main.css "/> -->
     <style>
-        
-        @keyframes move {
-        from { transform: translateX(100vw); }
-        to { transform: translateX(-100vw); }
+        @keyframes move-vertical {
+            from { transform: translateY(-100vw); }
+            to { transform: translateY(50vw); }
         }
-        .animate-move {
-            animation: move 11s infinite ;
+        .animate-move-vertical {
+            animation: move-vertical linear infinite;
         }
 
-        /* @keyframes move {
-        to{ transform: translatey(100vw); }
-        from { transform: translatey(-100vw); }
+        @keyframes move {
+            from { transform: translateX(90vw); }
+            to { transform: translateX(-100vw); }
         }
         .animate-move {
-            animation: move 11s infinite ;
-        } */
-        
+            animation: move 7s infinite;
+        }
     </style>
 </head>
 <body>
-
-<div class="flex items-center justify-center ">
-    
-
+<div class="flex items-center justify-center min-h-screen relative">
     <div class="absolute inset-0 z-0 h-full">
-        <img src="bg.jpg" alt="background"
-            class="w-full h-full object-cover "></div>
+        <img src="bg.jpg" alt="background" class="w-full h-full object-cover">
+    </div>
 
-    <div id="girl" class="absolute inset-0 z-0">
-        <img src="girl.png" alt="cycling-girl" class=" w-80 h-100 object-cover my-14 absolute left-0 animate-move"></div>
+    <div id="girl" class="absolute inset-0 ">
+        <img src="girl.png" alt="cycling-girl" class="w-80 h-100 object-cover my-14 absolute left-0 animate-move">
+    </div>
 
-        <div  id="leaf" class="absolute inset-0 z=0 object-left">
-            <img src="leaf_01.png" alt="">
-        </div>
+    <div id="leaf-container" class="absolute inset-0 z-5"></div>
 
-    <div class="absolute inset-0 z-0">
-        <img src="trees.png" alt="trees" class="w-full h-full object-cover "></div>
+    <div id="trees" class="absolute inset-0 z-0">
+        <img src="trees.png" alt="trees" class="w-full h-full object-cover">
+    </div>
 
-
-        <div class=" items-center backdrop-filter backdrop-blur-[25px] justify-center z-10 p-8 rounded-md shadow-2xl border-white border-1 border-solid   align-middle  my-32 box-border relative bg-transparent  ">
-            
-                <h2 class="ml-20 text-red-800 font-bold text-3xl m-2 mb-4 ">Sign In</h2>
-
-            <form action="#" class="relative ">
-                <div class="mb-4">
-                    <input type="text" class=" p-2 w-72  m-2 rounded-lg
-                    placeholder:text-red-800 tracking-wide font-semibold" placeholder="Username"/>
-                </div>
-
-                <div class="mb-4 ">
-                    <input type="password"  class=" p-2 w-72 m-2 rounded-lg
-                placeholder:text-red-800 tracking-wide font-semibold" placeholder="Password"/>
-                </div>
-        
-                <div class="m-2 mb-4">
-                    <button class="bg-red-800 hover:bg-red-700 p-2 rounded-lg w-72 text-white ">Login</button>
-                </div>
-
-                <div class="my-5 "> <a href="" class="mr-11 my-3 text-red-800 font-medium ">Forget password</a>
-                    <a href="" class="mr-11 mx-14 text-red-800 font-medium underline" >Signup</a>
-                </div>
-            </form>
-        </div>
+    <div class="items-center backdrop-filter backdrop-blur-[25px] justify-center z-10 p-8 rounded-md shadow-2xl border-white border-1 border-solid my-32 relative bg-transparent">
+        <h2 class="ml-20 text-red-800 font-bold text-3xl m-2 mb-4">Sign In</h2>
+        <form action="#" class="relative">
+            <div class="mb-4">
+                <input type="text" class="p-2 w-72 m-2 rounded-lg placeholder:text-red-800 tracking-wide font-semibold" placeholder="Username">
+            </div>
+            <div class="mb-4">
+                <input type="password" class="p-2 w-72 m-2 rounded-lg placeholder:text-red-800 tracking-wide font-semibold" placeholder="Password">
+            </div>
+            <div class="m-2 mb-4">
+                <button class="bg-red-800 hover:bg-red-700 p-2 rounded-lg w-72 text-white">Login</button>
+            </div>
+            <div class="my-5">
+                <a href="#" class="mr-11 my-3 text-red-800 font-medium">Forget password</a>
+                <a href="#" class="mr-11 mx-14 text-red-800 font-medium underline">Signup</a>
+            </div>
+        </form>
+    </div>
 </div>
+<script>
+    function createLeaf() {
+        const leafContainer = document.getElementById('leaf-container');
+        const leaf = document.createElement('img');
+        leaf.src = 'leaf_01.png';
+        leaf.classList.add('absolute', 'animate-move-vertical');
+        leaf.style.top = '-10vh';
+        leaf.style.left = `${Math.random() * 100}vw`;
+        leaf.style.width = '50px';
+        leaf.style.height = '50px';
+        leaf.style.zIndex = '5';
+
+        // Randomize animation duration
+        const animationDuration = Math.random() * 5 + 5; // Between 5 and 10 seconds
+        leaf.style.animationDuration = `${animationDuration}s`;
+
+        leafContainer.appendChild(leaf);
+
+        leaf.addEventListener('animationiteration', () => {
+            // Move the leaf to a new random position smoothly
+            const newLeftPosition = `${Math.random() * 100}vw`;
+            // leaf.style.transition = 'left ease-out'; // Smooth transition for position change
+            // leaf.style.left = newLeftPosition;
+
+            // Re-randomize animation duration on each iteration
+            const newAnimationDuration = Math.random() * 5 + 5; // Between 5 and 10 seconds
+            leaf.style.animationDuration = `${newAnimationDuration}s`;
+        });
+    }
+
+    // Create a set of leaves to start with
+    for (let i = 0; i < 10; i++) {
+        createLeaf();
+    }
+</script>
 </body>
 </html>
-
