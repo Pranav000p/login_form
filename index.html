@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="main.css "/> -->
+    <style>
+        
+        @keyframes move {
+        from { transform: translateX(100vw); }
+        to { transform: translateX(-100vw); }
+        }
+        .animate-move {
+            animation: move 11s infinite ;
+        }
+
+        /* @keyframes move {
+        to{ transform: translatey(100vw); }
+        from { transform: translatey(-100vw); }
+        }
+        .animate-move {
+            animation: move 11s infinite ;
+        } */
+        
+    </style>
+</head>
+<body>
+
+<div class="flex items-center justify-center ">
+    
+
+    <div class="absolute inset-0 z-0 h-full">
+        <img src="bg.jpg" alt="background"
+            class="w-full h-full object-cover "></div>
+
+    <div id="girl" class="absolute inset-0 z-0">
+        <img src="girl.png" alt="cycling-girl" class=" w-80 h-100 object-cover my-14 absolute left-0 animate-move"></div>
+
+        <div  id="leaf" class="absolute inset-0 z=0 object-left">
+            <img src="leaf_01.png" alt="">
+        </div>
+
+    <div class="absolute inset-0 z-0">
+        <img src="trees.png" alt="trees" class="w-full h-full object-cover "></div>
+
+
+        <div class=" items-center backdrop-filter backdrop-blur-[25px] justify-center z-10 p-8 rounded-md shadow-2xl border-white border-1 border-solid   align-middle  my-32 box-border relative bg-transparent  ">
+            
+                <h2 class="ml-20 text-red-800 font-bold text-3xl m-2 mb-4 ">Sign In</h2>
+
+            <form action="#" class="relative ">
+                <div class="mb-4">
+                    <input type="text" class=" p-2 w-72  m-2 rounded-lg
+                    placeholder:text-red-800 tracking-wide font-semibold" placeholder="Username"/>
+                </div>
+
+                <div class="mb-4 ">
+                    <input type="password"  class=" p-2 w-72 m-2 rounded-lg
+                placeholder:text-red-800 tracking-wide font-semibold" placeholder="Password"/>
+                </div>
+        
+                <div class="m-2 mb-4">
+                    <button class="bg-red-800 hover:bg-red-700 p-2 rounded-lg w-72 text-white ">Login</button>
+                </div>
+
+                <div class="my-5 "> <a href="" class="mr-11 my-3 text-red-800 font-medium ">Forget password</a>
+                    <a href="" class="mr-11 mx-14 text-red-800 font-medium underline" >Signup</a>
+                </div>
+            </form>
+        </div>
+</div>
+</body>
+</html>
+
